@@ -5,20 +5,10 @@ require('dotenv').config()
 const connectDB = require('./config/db')
 const router = require('./routes')
 const app = express()
-const allowedOrigins = [
-  'http://localhost:3000',
-  'https://ecommerec-website-front-hb2rhnhgi-sabuj-sarkers-projects.vercel.app'
-];
-
-
 app.use(cors({
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
+  origin: 'https://ecommerec-website-front.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow methods as needed
+  credentials: true // Enable if your requests require credentials like cookies
 }));
 app.use(express.json())
 app.use(cookieParser())
